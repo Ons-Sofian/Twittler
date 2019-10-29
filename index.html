@@ -1,43 +1,63 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Twittler</title>
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
   </head>
   <body>
+    <div id="head">
+    <img src="https://image.flaticon.com/icons/png/512/23/23931.png" alt="Twittler Logo">
+    <center>
     <h1> TWITTER</h1>
-    <input type="text" id="input1" alt="  hi">
+    </center>
+    </div>
+    <center>
+    <textarea type="text" id="input1" placeholder="User Name"></textarea>
     <br>
-   <input type="text" id="input2">
+   <textarea type="text" id="input2" placeholder="Tweet"></textarea>
+    <br>
     <br>
     <button id="tweet">New Tweets</button>
- <div>
+    <button id="button1">Show Tweets</button>
+    </center>
+ <br>
+ 
+
       
+   
+ <div id="divone">
     <script>
-        $(document).ready(function(){
+        $('button#button1').on('click',function(event){
         var $body = $('body');
         
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
+          var $tweet = $('<div class="tweets"></div>');
+          var x = new Date()
+
+          $tweet.html('<h3>' + '@' + tweet.user + ': ' + '</h3>' + tweet.message + '.' +'<p>' + x + '</p>') ;
+          $tweet.prependTo('#divone');
           index -= 1;
         }
       });
         $('#tweet').on('click', function(){
       
           var $body = $('body');
-     var index = 0;
-        while(index >= 0){
-          if(($('#input1').val()) !== ''){
+          var index = 0;
+
+        while(index >= 0) {
+         
+          if(($('#input1').val()) !== '') {
+         
           var tweetName = ($('#input1').val());
           var tweet = ($('#input2').val());
           var $tweet = $('<div class="tweet1"></div>');
-          $tweet.text('@' + tweetName + ': ' + tweet + '.');
-          $tweet.appendTo($body);
+         
+          $tweet.html('<h3>' + '@' + tweetName + ': ' + '</h3>'+ tweet + '.' +'<p>'+ Date()+'</p>');
+          $tweet.prependTo('#divone');
           index -= 1;
         }
         }
@@ -45,7 +65,8 @@
         
 })
     </script>
-    
+ <footer>ALL RIGHTS ARE RESERVED 2019</footer>   
     </div>
+   
   </body>
 </html>
